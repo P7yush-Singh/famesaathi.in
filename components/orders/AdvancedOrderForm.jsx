@@ -19,14 +19,35 @@ export default function AdvancedOrderForm() {
       ? ((quantity / 1000) * selectedService.pricePer1000).toFixed(2)
       : "0.00";
 
-  const placeOrder = () => {
-    if (!selectedService || !link || !quantity) {
-      toast.error("Please fill all required fields");
-      return;
-    }
+  const placeOrder = async () => {
+  if (!selectedService || !link || !quantity) {
+    toast.error("Please fill all required fields");
+    return;
+  }
 
-    toast.success("Order placed (manual processing)");
-  };
+  const price = (quantity / 1000) * selectedService.pricePer1000;
+
+  const res = await fetch("/api/orders/create", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      serviceId: selectedService.id,
+      serviceName: selectedService.name,
+      link,
+      quantity,
+      price,
+    }),
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    toast.error(data.error || "Order failed");
+    return;
+  }
+
+  toast.success("Order placed successfully");
+};
 
   return (
     <div className="rounded-2xl bg-[#0b2545] border border-white/10 p-6 space-y-6">

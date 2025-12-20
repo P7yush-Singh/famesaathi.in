@@ -23,7 +23,7 @@ export default function Navbar() {
             href="/login"
             className="px-4 py-2 rounded-full text-sm font-semibold 
                        bg-white/10 hover:bg-white/20 
-                       transition backdrop-blur"
+                       transition backdrop-blur text-white"
           >
             Login
           </Link>
