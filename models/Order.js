@@ -10,16 +10,17 @@ const OrderSchema = new mongoose.Schema(
 
     serviceId: String,
     serviceName: String,
-
-    link: { type: String, required: true },
-    quantity: { type: Number, required: true },
-    price: { type: Number, required: true },
+    link: String,
+    quantity: Number,
+    price: Number,
 
     status: {
       type: String,
       enum: ["pending", "completed", "cancelled"],
       default: "pending",
     },
+
+    adminNote: String, // refund / cancel reason
   },
   { timestamps: true }
 );

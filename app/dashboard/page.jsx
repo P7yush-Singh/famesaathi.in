@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import { connectDB } from "@/lib/db";
 import User from "@/models/User";
 import Order from "@/models/Order";
+import { middleware } from "@/middleware";
 
 export default async function DashboardPage() {
   const cookieStore = await cookies();

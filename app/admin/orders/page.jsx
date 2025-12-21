@@ -1,24 +1,33 @@
-import Navbar from "@/components/Navbar";
-import AdminNav from "@/components/admin/AdminNav";
-import AdminOrderRow from "@/components/admin/AdminOrderRow";
+import { cookies } from "next/headers";
+import jwt from "jsonwebtoken";
+import { redirect } from "next/navigation";
+import { connectDB } from "@/lib/db";
+import Order from "@/models/Order";
+import User from "@/models/User";
+import AdminOrdersClient from "./AdminOrdersClient";
 
-export default function AdminOrdersPage() {
-  return (
-    <>
-      <Navbar />
+export default async function AdminOrdersPage({ searchParams }) {
+  const token = (await cookies()).get("token")?.value;
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  if (decoded.role !== "admin") redirect("/dashboard");
 
-      <main className="min-h-screen bg-linear-to-b
-                       from-[#020b18] via-[#06162b] to-[#020b18]
-                       text-white px-4 py-8">
-        <div className="max-w-6xl mx-auto">
+  const { q = "", status = "" } = searchParams;
 
-          <h1 className="text-2xl font-bold mb-4">Manage Orders</h1>
+  await connectDB();
 
-          <AdminNav />
+  const orders = await Order.find({
+    ...(status && { status }),
+    ...(q && {
+      $or: [
+        { serviceName: { $regex: q, $options: "i" } },
+        { link: { $regex: q, $options: "i" } },
+      ],
+    }),
+  }).lean();
 
-          {/* Orders table stays same */}
-        </div>
-      </main>
-    </>
-  );
+  const users = await User.find({ _id: { $in: orders.map(o => o.userId) } }).lean();
+  const map = {};
+  users.forEach(u => (map[u._id.toString()] = u));
+
+  return <AdminOrdersClient orders={orders.map(o => ({ ...o, user: map[o.userId] }))} />;
 }
