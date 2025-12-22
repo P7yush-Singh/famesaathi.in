@@ -5,22 +5,26 @@ const OrderSchema = new mongoose.Schema(
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true,
+      required: true
     },
 
+    category: String,
     serviceId: String,
     serviceName: String,
+
     link: String,
     quantity: Number,
-    price: Number,
+
+    pricePer1000: Number,
+    totalAmount: Number,
 
     status: {
       type: String,
       enum: ["pending", "completed", "cancelled"],
-      default: "pending",
+      default: "pending"
     },
 
-    adminNote: String, // refund / cancel reason
+    adminNote: String
   },
   { timestamps: true }
 );

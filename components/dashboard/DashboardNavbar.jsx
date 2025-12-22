@@ -23,7 +23,7 @@ export default async function DashboardNavbar() {
 
         <nav className="flex gap-4 text-sm text-gray-300">
           <Link href="/dashboard" className="hover:text-white">Dashboard</Link>
-          <Link href="/new-order" className="hover:text-white">New Order</Link>
+          <Link href="/orders/new" className="hover:text-white">New Order</Link>
           <Link href="/orders" className="hover:text-white">Orders</Link>
           <Link href="/wallet" className="hover:text-white">Wallet</Link>
         </nav>

@@ -1,47 +1,64 @@
+import DashboardNavbar from "@/components/dashboard/DashboardNavbar";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
-import { redirect } from "next/navigation";
 import { connectDB } from "@/lib/db";
 import Order from "@/models/Order";
+import { redirect } from "next/navigation";
 
 export default async function OrdersPage() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("token")?.value;
+  const token = (await cookies()).get("token")?.value;
   if (!token) redirect("/login");
 
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
   await connectDB();
+
   const orders = await Order.find({ userId: decoded.userId })
-    .sort({ createdAt: -1 });
+    .sort({ createdAt: -1 })
+    .lean();
 
   return (
-    <main className="min-h-screen bg-[#020b18] text-white p-6">
-      <h1 className="text-xl font-bold mb-4">My Orders</h1>
+    <div className="min-h-screen bg-[#020b18] text-white">
+      <DashboardNavbar />
 
-      {orders.length === 0 ? (
-        <p className="text-gray-400">No orders found</p>
-      ) : (
-        <div className="space-y-3">
-          {orders.map(order => (
-            <div
-              key={order._id}
-              className="bg-[#0b2545] border border-white/10 rounded-xl p-4 flex justify-between"
-            >
-              <div>
-                <p className="font-semibold">{order.serviceName}</p>
-                <p className="text-sm text-gray-400">{order.link}</p>
-              </div>
-              <div className="text-right">
-                <p>₹{order.price}</p>
-                <p className="text-sm capitalize text-gray-400">
-                  {order.status}
-                </p>
-              </div>
-            </div>
-          ))}
+      <main className="p-6">
+        <h1 className="text-2xl font-semibold mb-6">My Orders</h1>
+
+        <div className="bg-[#0b2545] border border-white/10 rounded-lg overflow-hidden">
+          <table className="w-full text-sm">
+            <thead className="bg-black/30">
+              <tr>
+                <th className="p-3 text-left">History</th>
+                <th className="p-3 text-left">Link</th>
+                <th>Status</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {orders.length === 0 && (
+                <tr>
+                  <td colSpan="6" className="p-4 text-center text-gray-400">
+                    No orders yet
+                  </td>
+                </tr>
+              )}
+
+              {orders.map(o => (
+                <tr key={o._id} className="border-t text-center border-white/10">
+                  <td className="p-3 text-left">{o.serviceName}</td>
+                  <td className="p-3 text-left">{o.link}</td>
+                  <td>{o.status}</td>
+                  <td>{o.quantity}</td>
+                  <td>₹{o.price}</td>
+                  <td>{new Date(o.createdAt).toLocaleDateString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-      )}
-    </main>
+      </main>
+    </div>
   );
 }
