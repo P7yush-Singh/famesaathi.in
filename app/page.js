@@ -10,12 +10,14 @@ import { redirect } from "next/navigation";
 export default async function Home() {
   const token = (await cookies()).get("token")?.value;
   
+  if (token) {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
   
     await connectDB();
     const user = await User.findById(decoded.userId).lean();
-    if(decoded.role === 'admin') redirect("/admin")
+    if(user.role === 'admin') redirect("/admin")
     if (user) redirect("/dashboard");
+  }
 
   return (
     <main className="min-h-screen bg-linear-to-b from-[#020b18] via-[#06162b] to-[#020b18] text-white">
