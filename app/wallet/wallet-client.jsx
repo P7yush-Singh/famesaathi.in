@@ -82,16 +82,6 @@ export default function WalletClient() {
     <div className="max-w-xl mx-auto p-6 space-y-5">
       <h1 className="text-xl font-semibold">Add Funds</h1>
 
-      {/* Amount */}
-      <input
-        type="number"
-        min={10}
-        className="input"
-        value={amount}
-        onChange={(e) => setAmount(Number(e.target.value))}
-        placeholder="Amount (₹)"
-      />
-
       {/* QR Code */}
       <div className="bg-white p-4 rounded flex justify-center" ref={qrRef}>
         <QRCode value={upiUrl} size={200} />
@@ -107,6 +97,15 @@ export default function WalletClient() {
       >
         Download QR Code
       </button>
+
+      {/* Amount */}
+      <input
+        type="number"
+        min={10}
+        className="input"
+        onChange={(e) => setAmount(Number(e.target.value))}
+        placeholder="Amount (₹)"
+      />
 
       {/* Mobile */}
       <input
@@ -148,11 +147,11 @@ export default function WalletClient() {
       {history.map((h) => (
         <div
           key={h._id}
-          className="flex justify-between bg-slate-800 p-3 rounded"
+          className="flex justify-between bg-slate-900 p-3 rounded"
         >
           <span className="capitalize">{h.type}</span>
           <span>₹{h.amount}</span>
-          <span className="text-xs text-gray-400">
+          <span className="text-xs text-gray-300">
             {new Date(h.createdAt).toLocaleDateString()}
           </span>
         </div>
