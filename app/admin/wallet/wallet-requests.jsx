@@ -39,26 +39,28 @@ export default function WalletRequests() {
         </thead>
         <tbody>
           {requests.map((r) => (
-            <tr key={r._id}>
-              <td>{r.userId?.name}</td>
-              <td>₹{r.amount}</td>
-              <td>{r.utr}</td>
-              <td className="space-x-2">
-                <button
-                  className="bg-green-600 px-3 py-1 rounded"
-                  onClick={() => action(r._id, "approve")}
-                >
-                  Approve
-                </button>
-                <button
-                  className="bg-red-600 px-3 py-1 rounded"
-                  onClick={() => action(r._id, "reject")}
-                >
-                  Reject
-                </button>
-              </td>
-            </tr>
-          ))}
+  <tr key={r._id}>
+    <td>{r.userId?.name}</td>
+    <td>₹{r.amount}</td>
+    <td>{r.utr}</td>
+    <td>
+      {r.screenshot && (
+        <a
+          href={r.screenshot}
+          target="_blank"
+          className="text-blue-400 underline"
+        >
+          View Screenshot
+        </a>
+      )}
+    </td>
+    <td>
+      <button onClick={() => action(r._id, "approve")}>Approve</button>
+      <button onClick={() => action(r._id, "reject")}>Reject</button>
+    </td>
+  </tr>
+))}
+
         </tbody>
       </table>
     </div>

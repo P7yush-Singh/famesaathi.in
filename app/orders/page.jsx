@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import { connectDB } from "@/lib/db";
 import Order from "@/models/Order";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default async function OrdersPage() {
   const token = (await cookies()).get("token")?.value;
@@ -48,10 +49,12 @@ export default async function OrdersPage() {
               {orders.map(o => (
                 <tr key={o._id} className="border-t text-center border-white/10">
                   <td className="p-3 text-left">{o.serviceName}</td>
-                  <td className="p-3 text-left">{o.link}</td>
+                  <td className="p-3 text-left">
+                    <Link href={o.link} target="_blank" className="text-blue-300 hover:text-blue-500">{o.link}</Link>
+                  </td>
                   <td>{o.status}</td>
                   <td>{o.quantity}</td>
-                  <td>₹{o.price}</td>
+                  <td>₹{o.totalAmount}</td>
                   <td>{new Date(o.createdAt).toLocaleDateString()}</td>
                 </tr>
               ))}

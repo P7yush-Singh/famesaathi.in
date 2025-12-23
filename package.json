@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
+    "cloudinary": "^2.8.0",
     "jsonwebtoken": "^9.0.3",
     "lucide-react": "^0.562.0",
     "mongoose": "^9.0.2",
     "next": "16.0.10",
+    "next-cloudinary": "^6.17.5",
     "react": "19.2.1",
     "react-dom": "19.2.1",
     "react-qr-code": "^2.0.18",

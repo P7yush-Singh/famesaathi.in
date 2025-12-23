@@ -35,6 +35,11 @@ const WalletTransactionSchema = new mongoose.Schema(
       enum: ["pending", "approved", "rejected", "completed"],
       default: "completed",
     },
+    screenshot: {
+  type: String,
+  required: true,
+},
+
 
     adminNote: String,
   },
