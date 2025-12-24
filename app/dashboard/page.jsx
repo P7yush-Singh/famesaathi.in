@@ -5,6 +5,7 @@ import { connectDB } from "@/lib/db";
 import User from "@/models/User";
 import Order from "@/models/Order";
 import { redirect } from "next/navigation";
+import MobileBottomNav from "@/components/MobileBottomNav";
 
 export default async function DashboardPage() {
   const token = (await cookies()).get("token")?.value;
@@ -52,6 +53,7 @@ export default async function DashboardPage() {
           </div>
         </div>
       </main>
+  <MobileBottomNav />
     </div>
   );
 }

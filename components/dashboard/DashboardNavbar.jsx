@@ -17,34 +17,45 @@ export default async function DashboardNavbar() {
   if (!user) redirect("/login");
 
   return (
-    <header className="h-14 bg-[#020b18] border-b border-white/10 flex items-center justify-between px-6">
-      {/* LEFT */}
-      <div className="flex items-center gap-6">
-        <span className="font-semibold text-lg">FameSaathi</span>
+    <header className="bg-[#020b18] border-b border-white/10 px-4 sm:px-6">
+  <div className="h-14 flex items-center justify-between">
+    
+    {/* LEFT */}
+    <div className="flex items-center gap-4">
+      <span className="font-semibold text-lg">FameSaathi</span>
 
-        <nav className="flex gap-4 text-sm text-gray-300">
-          <Link href="/dashboard" className="hover:text-white">Dashboard</Link>
-          <Link href="/orders/new" className="hover:text-white">New Order</Link>
-          <Link href="/orders" className="hover:text-white">Orders</Link>
-          <Link href="/wallet" className="hover:text-white">Wallet</Link>
-        </nav>
-      </div>
+      <nav className="hidden md:flex gap-4 text-sm text-gray-300">
+        <Link href="/dashboard" className="hover:text-white">Dashboard</Link>
+        <Link href="/orders/new" className="hover:text-white">New Order</Link>
+        <Link href="/orders" className="hover:text-white">Orders</Link>
+        <Link href="/wallet" className="hover:text-white">Wallet</Link>
+      </nav>
+    </div>
 
-      {/* RIGHT */}
-      <div className="flex items-center gap-4 text-sm">
-        <span className="bg-[#103664] px-4 py-2 flex gap-1 items-center rounded">
-        <Wallet width={18} />
-          ₹{user.walletBalance}
-        </span>
+    {/* RIGHT */}
+    <div className="flex items-center gap-2 sm:gap-4 text-sm">
+      <span className="bg-[#103664] px-3 py-1.5 flex gap-1 items-center rounded text-xs sm:text-sm">
+        ₹{user.walletBalance}
+      </span>
 
-        <span>{user.name}</span>
+      <span className="hidden sm:block">{user.name}</span>
 
-        <form action="/api/auth/logout" method="POST">
-          <button className="bg-red-600 px-3 py-1 rounded">
-            Logout
-          </button>
-        </form>
-      </div>
-    </header>
+      <form action="/api/auth/logout" method="POST">
+        <button className="bg-red-600 px-3 py-1 rounded text-xs sm:text-sm">
+          Logout
+        </button>
+      </form>
+    </div>
+  </div>
+
+  {/* MOBILE NAV */}
+  <nav className="md:hidden flex justify-around text-xs text-gray-300 py-2 border-t border-white/10">
+    <Link href="/dashboard">Dashboard</Link>
+    <Link href="/orders/new">New</Link>
+    <Link href="/orders">Orders</Link>
+    <Link href="/wallet">Wallet</Link>
+  </nav>
+</header>
+
   );
 }
