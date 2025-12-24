@@ -46,7 +46,7 @@ export default async function DashboardPage() {
         <div className="bg-[#0b2545] border border-white/10 rounded-lg p-5">
           <h2 className="font-medium mb-4">Quick Actions</h2>
           <div className="flex gap-4">
-            <ActionBtn href="/new-order" label="New Order" />
+            <ActionBtn href="/orders/new" label="New Order" />
             <ActionBtn href="/wallet" label="Add Funds" />
             <ActionBtn href="/orders" label="View Orders" />
           </div>

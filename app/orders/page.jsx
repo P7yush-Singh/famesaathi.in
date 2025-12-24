@@ -50,7 +50,7 @@ export default async function OrdersPage() {
                 <tr key={o._id} className="border-t text-center border-white/10">
                   <td className="p-3 text-left">{o.serviceName}</td>
                   <td className="p-3 text-left">
-                    <Link href={o.link} target="_blank" className="text-blue-300 hover:text-blue-500">{o.link}</Link>
+                    <Link href={`https://${o.link}`} target="_blank" className="text-blue-300 hover:text-blue-500">{o.link}</Link>
                   </td>
                   <td>{o.status}</td>
                   <td>{o.quantity}</td>

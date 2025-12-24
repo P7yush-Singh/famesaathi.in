@@ -1,15 +1,18 @@
 "use client";
 
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 import AuthCard from "./AuthCard";
 
 export default function HeroSection() {
+  const router = useRouter();
+
   return (
     <section className="px-6 pt-20 text-center relative overflow-hidden">
-      
+
       {/* Background Glow */}
       <div className="absolute -top-40 left-1/2 -translate-x-1/2 
-                      w-125 h-125 
+                      w-[500px] h-[500px]
                       bg-blue-500/20 blur-[120px]" />
 
       <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
@@ -20,7 +23,7 @@ export default function HeroSection() {
       </h1>
 
       <p className="mt-5 text-gray-300 max-w-xl mx-auto">
-        Buy Instagram Likes, Followers & Views instantly starting at ₹1.00.
+        Buy Instagram Likes, Followers & Views instantly starting at ₹5.00.
         100% manual delivery. No bots.
       </p>
 
@@ -37,6 +40,7 @@ export default function HeroSection() {
         </button>
 
         <button
+          onClick={() => router.push("/register")}
           className="px-6 py-3 rounded-full font-semibold
                      bg-linear-to-r from-blue-500 to-blue-600
                      shadow-[0_0_25px_rgba(59,130,246,0.45)]
@@ -47,29 +51,8 @@ export default function HeroSection() {
       </div>
 
       {/* Login Card */}
-<div className="mt-10">
-  <AuthCard mode="login" />
-</div>
-
-{/* Demo Video */}
-<div className="mt-12 max-w-md mx-auto rounded-2xl 
-                bg-linear-to-b from-white/10 to-white/5
-                backdrop-blur border border-white/10
-                shadow-xl overflow-hidden">
-  <div className="h-95 flex items-center justify-center text-gray-400">
-    Demo Video Placeholder
-  </div>
-</div>
-
-
-      {/* Video Card */}
-      <div className="mt-12 max-w-md mx-auto rounded-2xl 
-                      bg-linear-to-b from-white/10 to-white/5
-                      backdrop-blur border border-white/10
-                      shadow-xl overflow-hidden">
-        <div className="h-95 flex items-center justify-center text-gray-400">
-          Demo Video Placeholder
-        </div>
+      <div className="mt-10">
+        <AuthCard mode="login" />
       </div>
     </section>
   );
