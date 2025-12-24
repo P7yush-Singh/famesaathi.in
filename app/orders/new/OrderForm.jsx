@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { Instagram, IndianRupee } from "lucide-react";
-import { SERVICES } from "@/lib/services";
+import { SERVICES } from "@/lib/newServices";
 
 export default function OrderForm({ walletBalance }) {
   const router = useRouter();
