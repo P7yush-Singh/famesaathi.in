@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import { connectDB } from "@/lib/db";
 import User from "@/models/User";
 import { redirect } from "next/navigation";
+import { Wallet} from "lucide-react";
 
 export default async function DashboardNavbar() {
   const token = (await cookies()).get("token")?.value;
@@ -31,7 +32,8 @@ export default async function DashboardNavbar() {
 
       {/* RIGHT */}
       <div className="flex items-center gap-4 text-sm">
-        <span className="bg-[#0b2545] px-3 py-1 rounded">
+        <span className="bg-[#103664] px-4 py-2 flex gap-1 items-center rounded">
+        <Wallet width={18} />
           ₹{user.walletBalance}
         </span>
 
