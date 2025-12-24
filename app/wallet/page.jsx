@@ -22,7 +22,7 @@ export default async function WalletPage() {
   return (
     <div className="min-h-screen bg-[#020b18] text-white">
       <DashboardNavbar />
-      <div className="p-6 max-w-5xl mx-auto">
+      <div className="p-6 max-w-5xl mx-auto mb-8">
         <WalletClient
           balance={Number(user.walletBalance || 0)}
           transactions={transactions}

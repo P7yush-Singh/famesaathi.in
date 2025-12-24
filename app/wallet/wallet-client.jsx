@@ -4,6 +4,7 @@ import { useState } from "react";
 import QRCode from "react-qr-code";
 import { Upload, ArrowDownCircle, ArrowUpCircle } from "lucide-react";
 import { toast } from "react-toastify";
+import MobileBottomNav from "@/components/MobileBottomNav";
 
 const UPI_ID = "yashsingh2314@ptaxis";
 
@@ -44,6 +45,7 @@ export default function WalletClient({ balance, transactions = [], hasPending })
   }
 
   return (
+    <>
     <div className="space-y-8">
 
       {/* BALANCE */}
@@ -59,6 +61,14 @@ export default function WalletClient({ balance, transactions = [], hasPending })
           ⏳ You have a pending recharge request
         </div>
       )}
+
+      {/* Show History Btn */}
+      <a
+          href="/wallet/history"
+          className="block md:hidden text-center bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg font-medium"
+        >
+          Show History
+        </a>
 
       {/* ADD FUNDS */}
       <div className="bg-[#0b1f3a] rounded-2xl p-6 space-y-5">
@@ -130,7 +140,7 @@ export default function WalletClient({ balance, transactions = [], hasPending })
       </div>
 
       {/* WALLET HISTORY */}
-      <div className="bg-[#0b1f3a] rounded-2xl p-6">
+      <div className="bg-[#0b1f3a] md:block hidden rounded-2xl p-6">
         <h3 className="text-lg font-semibold mb-4 text-white">
           Wallet Transaction History
         </h3>
@@ -181,5 +191,7 @@ export default function WalletClient({ balance, transactions = [], hasPending })
       </div>
 
     </div>
+    <MobileBottomNav/>
+    </>
   );
 }
