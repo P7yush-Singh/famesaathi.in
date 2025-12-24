@@ -12,7 +12,7 @@ export default function HeroSection() {
 
       {/* Background Glow */}
       <div className="absolute -top-40 left-1/2 -translate-x-1/2 
-                      w-[500px] h-[500px]
+                      w-125 h-125
                       bg-blue-500/20 blur-[120px]" />
 
       <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
@@ -40,7 +40,7 @@ export default function HeroSection() {
         </button>
 
         <button
-          onClick={() => router.push("/register")}
+          onClick={() => router.push("/signup")}
           className="px-6 py-3 rounded-full font-semibold
                      bg-linear-to-r from-blue-500 to-blue-600
                      shadow-[0_0_25px_rgba(59,130,246,0.45)]

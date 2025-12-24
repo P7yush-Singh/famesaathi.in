@@ -128,7 +128,7 @@ export default function AuthCard({ mode = "login" }) {
         Don’t have an account?{" "}
         <button
           type="button"
-          onClick={() => router.push("/register")}
+          onClick={() => router.push("/signup")}
           className="text-blue-400 hover:underline"
         >
           Sign Up
