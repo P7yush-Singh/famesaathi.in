@@ -12,7 +12,6 @@ import {
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/orders", label: "Orders", icon: ShoppingBag },
-  { href: "/admin/payments", label: "Admin Wallet", icon: CreditCard },
   { href: "/admin/wallet", label: "Wallet Requests", icon: Wallet },
 ];
 

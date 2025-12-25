@@ -29,13 +29,6 @@ export default function AdminNav() {
         </Link>
 
         <Link
-          href="/admin/payments"
-          className={linkClass("/admin/payments")}
-        >
-          Payments
-        </Link>
-
-        <Link
           href="/admin/wallet"
           className={linkClass("/admin/wallet")}
         >

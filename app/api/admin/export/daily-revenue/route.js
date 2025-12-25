@@ -17,28 +17,34 @@ export async function GET() {
 
   await connectDB();
 
-  const orders = await Order.find()
-    .populate("userId", "name email")
-    .sort({ createdAt: -1 })
-    .lean();
+  const data = await Order.aggregate([
+    { $match: { status: "completed" } },
+    {
+      $group: {
+        _id: {
+          $dateToString: {
+            format: "%Y-%m-%d",
+            date: "$createdAt",
+          },
+        },
+        revenue: { $sum: "$totalAmount" },
+        orders: { $sum: 1 },
+      },
+    },
+    { $sort: { _id: 1 } },
+  ]);
 
-  let csv =
-    "OrderID,User,Email,Category,Service,Quantity,PricePer1000,TotalAmount,Status,CreatedAt\n";
+  let csv = "Date,Revenue,Orders\n";
 
-  orders.forEach((o) => {
-    csv += `${o._id},"${o.userId?.name || ""}","${
-      o.userId?.email || ""
-    }","${o.category || ""}","${o.serviceName || ""}",${
-      o.quantity || 0
-    },${o.pricePer1000 || 0},${o.totalAmount || 0},${
-      o.status
-    },${new Date(o.createdAt).toISOString()}\n`;
+  data.forEach((d) => {
+    csv += `${d._id},${d.revenue},${d.orders}\n`;
   });
 
   return new Response(csv, {
     headers: {
       "Content-Type": "text/csv",
-      "Content-Disposition": "attachment; filename=orders.csv",
+      "Content-Disposition":
+        "attachment; filename=daily-revenue.csv",
     },
   });
 }
