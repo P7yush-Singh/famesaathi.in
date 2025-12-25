@@ -8,21 +8,44 @@ export async function GET() {
   try {
     await connectDB();
 
-    const token = cookies().get("token")?.value;
+    // ✅ App Router 16+ FIX
+    const cookieStore = await cookies();
+    const token = cookieStore.get("token")?.value;
+
     if (!token) {
-      return NextResponse.json({ user: null });
+      return NextResponse.json(
+        { user: null },
+        { status: 401 }
+      );
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    let decoded;
+    try {
+      decoded = jwt.verify(token, process.env.JWT_SECRET);
+    } catch {
+      return NextResponse.json(
+        { user: null },
+        { status: 401 }
+      );
+    }
 
-    const user = await User.findById(decoded.userId).select("-password");
+    const user = await User.findById(decoded.userId)
+      .select("-password")
+      .lean();
+
     if (!user) {
-      return NextResponse.json({ user: null });
+      return NextResponse.json(
+        { user: null },
+        { status: 404 }
+      );
     }
 
     return NextResponse.json({ user });
   } catch (err) {
-    console.error("ME ERROR:", err);
-    return NextResponse.json({ user: null });
+    console.error("AUTH /me ERROR:", err);
+    return NextResponse.json(
+      { user: null },
+      { status: 500 }
+    );
   }
 }

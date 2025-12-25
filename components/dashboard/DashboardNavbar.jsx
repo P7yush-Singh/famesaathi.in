@@ -34,11 +34,11 @@ export default async function DashboardNavbar() {
 
     {/* RIGHT */}
     <div className="flex items-center gap-2 sm:gap-4 text-sm">
-      <span className="bg-[#103664] px-3 py-1.5 flex gap-1 items-center rounded text-xs sm:text-sm">
+      <Link href="/wallet" className="bg-[#103664] px-3 py-1.5 flex gap-1 items-center rounded text-xs sm:text-sm">
         ₹{user.walletBalance}
-      </span>
+      </Link>
 
-      <span className="hidden sm:block">{user.name}</span>
+      <Link href="/profile" className="hidden sm:block">{user.name}</Link>
 
       <form action="/api/auth/logout" method="POST">
         <button className="bg-red-600 px-3 py-1 rounded text-xs sm:text-sm">
