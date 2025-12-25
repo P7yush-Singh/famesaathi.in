@@ -3,9 +3,11 @@ import WalletRequests from "./wallet-requests";
 
 export default function AdminWalletPage() {
   return (
-    <div className="min-h-screen bg-[#020b18] text-white">
+    <div className="min-h-screen bg-linear-to-br from-[#020b18] to-[#04142b] text-white">
       <AdminNavbar />
-      <WalletRequests />
+      <div className="max-w-7xl mx-auto px-4 py-6">
+        <WalletRequests />
+      </div>
     </div>
   );
 }
