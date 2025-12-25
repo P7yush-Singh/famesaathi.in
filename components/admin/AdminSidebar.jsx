@@ -8,7 +8,8 @@ export default function AdminSidebar() {
       <nav className="space-y-2">
         <NavItem href="/admin" label="Dashboard" />
         <NavItem href="/admin/orders" label="Orders" />
-        <NavItem href="/admin/payments" label="Wallet Requests" />
+        <NavItem href="/admin/payments" label="Admin Wallet" />
+        <NavItem href="/admin/wallet" label="Wallet Requests" />
       </nav>
     </aside>
   );
