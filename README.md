@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# FameSaathi 🚀  
+**Your Trusted Partner for Social Media Growth**
 
-## Getting Started
+FameSaathi is a modern, scalable SMM (Social Media Marketing) platform that enables users to purchase social media growth services such as Instagram Reel Views, Likes, Followers, and more — with transparent pricing, fast delivery, and a secure wallet-based system.
 
-First, run the development server:
+The platform is designed for **end-users, resellers, and admins**, with a strong focus on performance, automation, and profitability.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌟 Key Features
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 👤 User Features
+- User Authentication (Signup / Login)
+- Wallet System (Add Balance & Track Usage)
+- Purchase Social Media Services
+- Order History & Status Tracking
+- Profile Management (Update Name, Auto Refresh)
+- Secure Logout & Session Handling
+- Real-time Wallet Balance Updates
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+### 🛠 Admin Features
+- Admin Dashboard with Analytics
+- View & Manage Orders
+- Approve / Reject Requests
+- Complete Order Flow
+- Search Orders by:
+  - User
+  - UTR
+- Real-time Order Auto Refresh
+- Sound Alerts on New Requests
+- Toast Notifications (Approved / Rejected)
+- Daily Revenue Calculation
+- Date Range Revenue Export
+- Clean, Optimized Admin UI
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 💰 Pricing System
+- Dynamic pricing stored centrally
+- Profit-optimized selling prices
+- Reseller pricing tiers supported
+- Category-wise service pricing
+- Margin-friendly structure (e.g. ₹8.20 / 1000 views)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🧱 Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Frontend
+- **Next.js (App Router)**
+- **JavaScript (JSX)**
+- **Tailwind CSS**
+- Client & Server Components
+- Toast Notifications
+- Responsive, Mobile-First UI
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Backend
+- **Node.js**
+- **Next.js API Routes**
+- **MongoDB + Mongoose**
+- JWT-based Authentication
+- Secure Server Actions
+
+### Utilities & Services
+- Environment-based configuration
+- Wallet & Revenue Calculations
+- Export Utilities (CSV / JSON)
+- Admin-level role protection
+
+---
+
+## 📁 Project Structure (High Level)
